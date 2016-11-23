@@ -2,7 +2,7 @@ git add -u "fichier dans le dossier"
 git commit -m "idem" -a pour commit tous les fichiers dans 'git status' 
 git checkout -d "nom branche"
 git clone "url" copie le repository GitHub sur le PC
-git pull 
+git pull --rebase "Reprends tout ce qu'il y a dans le distant ie. GitHub pour les mettres dans votre commit a vous"
 
 test
 git push //pousse les fichiers dans le dossier sur le PC sur gitHub
