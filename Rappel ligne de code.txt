@@ -1,5 +1,7 @@
 git add -u "fichier dans le dossier"
-git commit -m "idem"
+git commit -m "idem" -a pour commit tous les fichiers dans 'git status' 
 git checkout -d "nom branche"
 git clone "url" copie le repository GitHub sur le PC
 git pull 
+
+test
