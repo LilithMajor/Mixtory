@@ -3,3 +3,4 @@ git commit -m "idem"
 git checkout -d "nom branche"
 git clone "url" copie le repository GitHub sur le PC
 git pull 
+git push //pousse les fichiers dans le dossier sur le PC sur gitHub
