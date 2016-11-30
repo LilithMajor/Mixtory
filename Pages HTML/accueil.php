@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 <!DOCTYPE HTML>
 <html>
 	<head>
