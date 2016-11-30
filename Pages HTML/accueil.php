@@ -24,8 +24,8 @@
 			
 			<?php 
 			
-			if (isset($_POST['texte'])){ ?>
-			$nbr_lignes_restantes = $_POST['nbr_ligne'] - $_POST['text'][size];
+			if (!isset($_POST['texte'])){ ?>
+				$nbr_lignes_restantes = $_POST['nbr_ligne'] - $_POST['text'][size];
 				<form method = "post" action = "accueil.php">
 					<div id = "texte"><textarea name = "texte">Rentrez votre texte</textarea></div>
 					<div id = "nbr_ligne">Choissisez le nombre de lignes : <input type = "text" name = "nbr_lignes"/></div>
