@@ -23,7 +23,7 @@
 			</header>
 			
 			<?php 
-			$nbr_lignes_restantes = $POST_['nbr_ligne'] - $POST_['text'][size];
+			$nbr_lignes_restantes = $_POST['nbr_ligne'] - $_POST['text'][size];
 			if (isset($_POST['texte'])){ ?>
 				<form method = "post" action = "accueil.php">
 					<div id = "texte"><textarea name = "texte">Rentrez votre texte</textarea></div>
@@ -34,7 +34,7 @@
 				<?php 
 			}
 			else{ ?>
-				<div id = "pre-texte"><article><?php echo $POST_['texte']?></article></div>
+				<div id = "pre-texte"><article><?php echo $_POST['texte']?></article></div>
 				<div id = "nbr_ligne_restante">Il reste <?php echo $nbr_ligne_restantes?> lignes !</div>
 			<?php
 			}
