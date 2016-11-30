@@ -26,7 +26,7 @@
 				  $textes = fopen('Textes.txt', 'r+');
 				  $adresses = fopen('Adresses.txt', 'r+');
 					$nbr_auteurs = fgets($monfichier);
-					$ancien_texte = fgets($textes);
+					echo $nbr_auteurs;
 			if(!isset($_POST['texte'])){ ?>
 				<form method = "post" action = "accueil.php">
 					<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
@@ -42,8 +42,8 @@
 					fputs($monfichier, $_POST['nbr_auteurs'] - 1);
 					fseek($textes, 0, SEEK_END);
 					fputs($textes, $_POST['texte']."\n"."\n"); 
-					fseek($adresses, 0);
-					fputs($adresses, $_POST['email']); 
+					fseek($adresses, 0, SEEK_END);
+					fputs($adresses, $_POST['email'].","); 
 				}
 				else{
 					$nbr_auteurs--; 
@@ -51,8 +51,8 @@
 					fputs($monfichier, $nbr_auteurs."\n");
 					fseek($textes, 0, SEEK_END);
 					fputs($textes, $_POST['texte']."\n"."\n"); 
-					fseek($adresses, 0);
-					fputs($adresses, $_POST['email']); 
+					fseek($adresses, 0, SEEK_END);
+					fputs($adresses, $_POST['email'].","); 
 				}?>
 					<div id = "pre-texte"><article><?php echo nl2br($_POST['texte']);?></article></div>
 				<form method = "post" action = "accueil.php">
@@ -63,10 +63,13 @@
 			<?php
 			}
 			else if($nbr_auteurs == 1){ ?><?php echo 'Attention vous êtes le dernier auteur !!'; 
+					$nbr_auteurs--;
+					fseek($monfichier, 0);
+					fputs($monfichier, $nbr_auteurs."\n");
 					fseek($textes, 0, SEEK_END);
 					fputs($textes, $_POST['texte']."\n"."\n"); 
-					fseek($adresses, 0);
-					fputs($adresses, $_POST['email']); 
+					fseek($adresses, 0, SEEK_END);
+					fputs($adresses, $_POST['email'].","); 
 			?>
 					<div id = "pre-texte"><article><?php echo nl2br($_POST['texte']);?></article></div>
 				<form method = "post" action = "accueil.php">
@@ -76,18 +79,25 @@
 				</form>
 				<?php
 			}
-			else{
+			else if($nbr_auteurs == 0){
 				echo 'fini';
 				fseek($textes, 0, SEEK_END);
 				fputs($textes, $_POST['texte']."\n"."\n");  
-				fseek($adresses, 0);
-				fputs($adresses, $_POST['email']); 
+				fseek($adresses, 0, SEEK_END);
+				fputs($adresses, $_POST['email'].","); 
+				//$adresse_mails = file($adresses);
+				//$ancien_texte = file_get_contents($textes);
+				mail('isold.boitard@gmail.com', "Votre histoire", 'BITE');
+				
 			}
+			else{}
+			fclose($textes);
+			fclose($adresses);
+			fclose($monfichier);
 			?>
 
 			<div id = "ex-story">Voici les anciennes histoires
 			</div> <!--Bouton-->
-			
 			<footer>
 								Nous contacter : <a href="mailto:g.grammont@hotmail.fr">Mail</a>
 			</footer>
