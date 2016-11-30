@@ -35,7 +35,7 @@
 				<?php 
 			}
 			else{ ?>
-				<?php $nbr_lignes_restantes = $_POST['nbr_lignes'] - $_POST['text'][size];?>
+				<?php $nbr_lignes_restantes = $_POST['nbr_lignes'] - count(explode("\n", $_POST['text']));?>
 				<div id = "pre-texte"><article><?php echo $_POST['texte']?></article></div>
 				<div id = "nbr_ligne_restante">Il reste <?php echo $nbr_ligne_restantes?> lignes !</div>
 			<?php
