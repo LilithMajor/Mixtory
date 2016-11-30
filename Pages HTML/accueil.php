@@ -59,6 +59,7 @@
 				<?php
 			}
 			else{}
+			ftruncate($monfichier,0);
 			fclose($monfichier);
 			?>
 
