@@ -22,24 +22,44 @@
 				<button id="bouton2">Science-Fiction</button>
 			</header>
 			
-			<?php 
-			
-			if (!isset($_POST['texte'])){ ?>
-	
+			<?php $monfichier = fopen('Donnees.txt', 'r+');
+					$nbr_auteurs = fgets($monfichier);
+					echo $nbr_auteurs;
+			if(isset($_POST['texte']) AND isset($_POST['nbr_auteurs'])){
+					fseek($monfichier, 0);
+					fputs($monfichier, $_POST['nbr_auteurs']);
+			}
+			else if(isset($nbr_auteurs)){ ?>
 				<form method = "post" action = "accueil.php">
-					<div id = "texte"><textarea name = "texte">Rentrez votre texte</textarea></div>
-					<div id = "nbr_ligne">Choissisez le nombre de lignes : <input type = "text" name = "nbr_lignes"/></div>
+					<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
+					<div id = "nbr_ligne">Choissisez le nombre de co-auteurs supplémentaires : <input type = "text" name = "nbr_auteurs"/></div>
 					<div id = "adresse-mail"><input type = "text" name = "email" value = "Adresse Mail"/></div>
 				<input type= "submit" value = "Go !"/>
 				</form>
 				<?php 
-			}
-			else{ ?>
-				<?php $nbr_lignes_restantes = $_POST['nbr_lignes'] - count(explode("\n", $_POST['text']));?>
-				<div id = "pre-texte"><article><?php echo $_POST['texte']?></article></div>
-				<div id = "nbr_ligne_restante">Il reste <?php echo $nbr_ligne_restantes?> lignes !</div>
+			} 
+			else if(isset($_POST['texte']) AND $nbr_auteurs > 1){ ?>
+				<?php $nbr_auteurs--; 
+					fseek($monfichier, 0);
+					fputs($monfichier, $nbr_auteurs + "\n");
+				?>
+				<form method = "post" action = "accueil.php">
+					<div id = "pre-texte"><article><?php echo $_POST['texte']?></article></div>
+					<div id = "adresse-mail"><input type = "text" name = "email" value = "Adresse Mail"/></div>
+					<input type= "submit" value = "Go !"/>
+				</form>
 			<?php
 			}
+			else if(isset($_POST['texte']) AND $nbr_auteurs <= 1){ ?><?php echo 'Attention vous êtes le dernier auteur !!' ?>
+				<form method = "post" action = "accueil.php">
+					<div id = "pre-texte"><article><?php echo $_POST['texte']?></article></div>
+					<div id = "adresse-mail"><input type = "text" name = "email" value = "Adresse Mail"/></div>
+					<input type= "submit" value = "Go !"/>
+				</form>
+				<?php
+			}
+			else{}
+			fclose($monfichier);
 			?>
 
 			<div id = "ex-story">Voici les anciennes histoires
