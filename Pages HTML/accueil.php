@@ -23,13 +23,11 @@
 			</header>
 			
 			<?php $monfichier = fopen('Donnees.txt', 'r+');
+				  $textes = fopen('Textes.txt', 'r+');
+				  $adresses = fopen('Adresses.txt', 'r+');
 					$nbr_auteurs = fgets($monfichier);
-					echo $nbr_auteurs;
-			if(isset($_POST['texte']) AND isset($_POST['nbr_auteurs'])){
-					fseek($monfichier, 0);
-					fputs($monfichier, $_POST['nbr_auteurs']);
-			}
-			else if(isset($nbr_auteurs)){ ?>
+					$ancien_texte = fgets($textes);
+			if(!isset($_POST['texte'])){ ?>
 				<form method = "post" action = "accueil.php">
 					<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
 					<div id = "nbr_ligne">Choissisez le nombre de co-auteurs supplémentaires : <input type = "text" name = "nbr_auteurs"/></div>
@@ -38,28 +36,53 @@
 				</form>
 				<?php 
 			} 
-			else if(isset($_POST['texte']) AND $nbr_auteurs > 1){ ?>
-				<?php $nbr_auteurs--; 
+			else if($nbr_auteurs > 1 OR isset($_POST['nbr_auteurs'])){ 
+				if(isset($_POST['nbr_auteurs'])){
 					fseek($monfichier, 0);
-					fputs($monfichier, $nbr_auteurs + "\n");
-				?>
+					fputs($monfichier, $_POST['nbr_auteurs'] - 1);
+					fseek($textes, 0, SEEK_END);
+					fputs($textes, $_POST['texte']."\n"."\n"); 
+					fseek($adresses, 0);
+					fputs($adresses, $_POST['email']); 
+				}
+				else{
+					$nbr_auteurs--; 
+					fseek($monfichier, 0);
+					fputs($monfichier, $nbr_auteurs."\n");
+					fseek($textes, 0, SEEK_END);
+					fputs($textes, $_POST['texte']."\n"."\n"); 
+					fseek($adresses, 0);
+					fputs($adresses, $_POST['email']); 
+				}?>
+					<div id = "pre-texte"><article><?php echo nl2br($_POST['texte']);?></article></div>
 				<form method = "post" action = "accueil.php">
-					<div id = "pre-texte"><article><?php echo $_POST['texte']?></article></div>
+					<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
 					<div id = "adresse-mail"><input type = "text" name = "email" value = "Adresse Mail"/></div>
 					<input type= "submit" value = "Go !"/>
 				</form>
 			<?php
 			}
-			else if(isset($_POST['texte']) AND $nbr_auteurs <= 1){ ?><?php echo 'Attention vous êtes le dernier auteur !!' ?>
+			else if($nbr_auteurs == 1){ ?><?php echo 'Attention vous êtes le dernier auteur !!'; 
+					fseek($textes, 0, SEEK_END);
+					fputs($textes, $_POST['texte']."\n"."\n"); 
+					fseek($adresses, 0);
+					fputs($adresses, $_POST['email']); 
+			?>
+					<div id = "pre-texte"><article><?php echo nl2br($_POST['texte']);?></article></div>
 				<form method = "post" action = "accueil.php">
-					<div id = "pre-texte"><article><?php echo $_POST['texte']?></article></div>
+					<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
 					<div id = "adresse-mail"><input type = "text" name = "email" value = "Adresse Mail"/></div>
 					<input type= "submit" value = "Go !"/>
 				</form>
 				<?php
 			}
-			else{}
-			fclose($monfichier);
+			else{
+				echo 'fini';
+				fseek($textes, 0, SEEK_END);
+				fputs($textes, $_POST['texte']."\n"."\n");  
+				fseek($adresses, 0);
+				fputs($adresses, $_POST['email']); 
+			}
 			?>
 
 			<div id = "ex-story">Voici les anciennes histoires
