@@ -13,23 +13,31 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-		$story = get_story();
+		$pretexte = $request->request->get('texte');
+		//$story = get_story();
+		//Si une story est en cours
+		//if (true) {
+			return  $this->render('new_story.html.twig');
+		//}
 		
-		if ($story !== null) {
-			return  $this->render('new_story.html');
-		}
-		
-		return $this->render('new_line.html', [
-			'story' => $story,
-		]);
+		//return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
     }
+	
+	/**
+     * @Route("/", name="register")
+     */
+	/* public function newlineAction(Request $request)
+	{
+		$pretexte = $request->request->get('texte');
+		return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
+	} */
 	
 
 }
 
-/
+/* /
 /new
 /register
 /newLine
 /registerLine
-/show?id=1
+/show?id=1 */
