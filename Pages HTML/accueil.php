@@ -1,3 +1,6 @@
+<?php 
+	require_once '../vendor/autoload.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
