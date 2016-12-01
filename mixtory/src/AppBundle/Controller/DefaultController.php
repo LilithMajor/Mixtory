@@ -14,13 +14,13 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-		$pretexte = $request->query->get('texte');
+		$pretexte = $request->request->get('texte');
 		//$story = get_story();
 		//Si une story est en cours
 		//if (true) {
-			return  $this->render('new_story.html.twig');
+			//return  $this->render('new_story.html.twig');
 		//}
-		//return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
+		return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
     }
 	
 	/**
