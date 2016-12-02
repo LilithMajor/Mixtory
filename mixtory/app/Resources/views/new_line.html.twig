@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html.twig' %}
 
 
@@ -9,3 +10,16 @@
 		<input type= "submit" value = "Go !"/>
 	</form>
 {% endblock %}
+=======
+{% extends 'base.html.twig' %}
+
+
+ {% block body %}
+	<form method = "post" action = "{{  path('homepage') }}">
+		<div id = "pre-texte"><article> {{pretexte}}</article></div>
+		<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
+		<div id = "adresse-mail"><input type = "text" name = "email" placeholder = "Adresse Mail"/></div>
+		<input type= "submit" value = "Go !"/>
+	</form>
+{% endblock %}
+>>>>>>> 867424b0bfdadcbe064e77fcb3117627ecf86fbb
