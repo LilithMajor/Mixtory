@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+ {% block body %}
+	<form method = "post" action = "{{ path('register') }}">
+		<div id = "titre"><input type = "text" name = "titre" placeholder = "Votre titre"/></div>
+		<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
+		<div id = "nbr_ligne">Choissisez le nombre de co-auteurs supplémentaires : <input type = "text" name = "nbr_auteurs"/></div>
+		<div id = "adresse-mail"><input type = "text" name = "email" placeholder = "Adresse Mail"/></div>
+		<input type= "submit" value = "Go !"/>
+	</form>
+{% endblock %}

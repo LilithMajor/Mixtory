@@ -9,28 +9,28 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
+    
     public function indexAction(Request $request)
     {
 		$pretexte = $request->request->get('texte');
 		//$story = get_story();
 		//Si une story est en cours
 		//if (true) {
-			//return  $this->render('new_story.html.twig');
+			echo $pretexte;
+			return  $this->render('new_story.html.twig');
 		//}
-		return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
+		//return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
     }
 	
 	/**
      * @Route("/", name="register")
      */
-	/* public function newlineAction(Request $request)
+	 
+	public function newlineAction(Request $request)
 	{
 		$pretexte = $request->request->get('texte');
 		return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
-	} */
+	}
 	
 
 }
