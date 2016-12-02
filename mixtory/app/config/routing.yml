@@ -2,10 +2,6 @@ site_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
 site_register:
-<<<<<<< HEAD
     path:     /New
     defaults: { _controller: AppBundle:Default:newline }
-=======
-    path:     /
-    defaults: { _controller: AppBundle:Default:newline }
->>>>>>> 867424b0bfdadcbe064e77fcb3117627ecf86fbb
+
