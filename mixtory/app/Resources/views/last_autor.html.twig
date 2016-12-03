@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+ {% block body %}
+	 <div id="last"><p>Attention vous êtes le dernier auteur !!</p></div>
+	<form method = "post" action = "{{  path('site_envoi') }}">
+		<div id = "pre-texte"><article> {{pretexte}}</article></div>
+		<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
+		<div id = "adresse-mail"><input type = "text" name = "email" placeholder = "Adresse Mail"/></div>
+		<input type= "submit" value = "Go !"/>
+	</form>
+{% endblock %}

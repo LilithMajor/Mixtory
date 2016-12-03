@@ -1,8 +1,14 @@
 site_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
+site_firstline:
+    path:     /New
+    defaults: { _controller: AppBundle:Default:firstline }
 site_register:
     path:     /New/{id}
     defaults: { _controller: AppBundle:Default:newline }
     requirements:
       id: \d+
+site_envoi:
+    path:     /Envoi
+    defaults: { _controller: AppBundle:Default:envoi }
