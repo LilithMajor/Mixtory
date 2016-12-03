@@ -14,28 +14,23 @@ class DefaultController extends Controller
     {
 
 		return  $this->render('new_story.html.twig');
-	}
+    }
 
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-	public function newlineAction(Request $request)
-	{
-		$pretexte = $request->request->get('texte');
-		return $this->render('new_line.html.twig', array('pretexte' => $pretexte)); 
+	public function newlineAction(Request $request, $id)
+    {
+        if($id == null){
+            $id = $request->request->get('nbr_auteurs');
+        }
+        else{
+            $id--;
+        }
+        $pretexte = $request->request->get('texte');
+        if($id == 1){
+            return $this->render('last_autor.html.twig', array('pretexte' =>$pretexte));  
+        }
+        else{
+            return $this->render('new_line.html.twig', array('pretexte' => $pretexte,'id' => $id));
+        } 
 	}
 	
 

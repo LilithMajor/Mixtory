@@ -2,6 +2,7 @@ site_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
 site_register:
-    path:     /New
+    path:     /New/{id}
     defaults: { _controller: AppBundle:Default:newline }
-
+    requirements:
+      id: \d+
