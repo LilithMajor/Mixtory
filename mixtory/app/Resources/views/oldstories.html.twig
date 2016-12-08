@@ -1,0 +1,11 @@
+<ul class="nav">
+	<h3>Voici les anciennes histoires !</h3>
+	
+	{% for story in stories %}
+		<li>
+			<a href="{{ path('site_story', {'id': story.id}) }}">
+				{{story.titre}}
+			</a>
+		</li>
+	{% endfor %}
+</ul>

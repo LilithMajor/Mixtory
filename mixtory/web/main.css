@@ -1,0 +1,31 @@
+*
+{
+	background-image: ;
+
+}
+
+#titre{
+	postion : relative;
+	margin-left : 45%;
+	margin-right : 45%;
+	width : 10%;
+	paddin-left : 0%;
+	border : 2px absolute red;
+	border-radius : 10px/50px;
+}
+
+#pre-texte{
+	position : relative;
+	margin-left : 50%;
+	border : 2px absolute red;
+}
+
+#texte{
+	margin-left : 45%;¶
+	margin-right : 45%;¶
+ 	width : 10%;¶
+ 	paddin-left : 0%;¶
+ 	border : 2px absolute red;¶
+	border-radius : 10px/50px;
+}
+

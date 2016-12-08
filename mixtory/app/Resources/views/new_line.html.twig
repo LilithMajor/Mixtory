@@ -2,7 +2,7 @@
 
 
  {% block body %}
-	 <p>{{ id }}</p>
+	 <p>{{ titre }}</p>
 	<form method = "post" action = "{{  path('site_register', {'id' : id}) }}">
 		<div id = "pre-texte"><article> {{pretexte}}</article></div>
 		<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>

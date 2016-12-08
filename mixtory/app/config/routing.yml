@@ -14,3 +14,8 @@ site_envoi:
     defaults: { _controller: AppBundle:Default:envoi }
     requirements:
       id: \d+
+site_story:
+    path:     /Show/{id}
+    defaults: { _controller: AppBundle:Default:show }
+    requirements:
+      id: \d+
