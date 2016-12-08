@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\QueryBuilder;
 /**
  * AuteurRepository
  *
@@ -13,7 +14,14 @@ class AuteurRepository extends \Doctrine\ORM\EntityRepository
 
     public function myFindMails($id)
     {
-        $query = $this->_em->createQuery('SELECT emails FROM AppBundle:Auteur a WHERE a.id = ;id');
+        $query = $this->_em->createQuery('SELECT a.email FROM AppBundle:Auteur a WHERE a.id = :id');
+        $query->setParameter('id', $id);
+
+        return $query->getResult();
+    }
+    public function myFindTextes($id)
+    {
+        $query = $this->_em->createQuery('SELECT a.texte FROM AppBundle:Auteur a WHERE a.id = :id');
         $query->setParameter('id', $id);
 
         return $query->getResult();

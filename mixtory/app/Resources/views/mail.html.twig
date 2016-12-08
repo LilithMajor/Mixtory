@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<p>Merci d'avoir participé à Mixtory ! Coeur sur vous <3</p>
+	<h3>{{ story.titre }}</h3>
+	{% for auteur in auteurs %}
+		<p>{{ auteur.texte }}</br></br></p>
+	{% endfor %}
+{% endblock %}

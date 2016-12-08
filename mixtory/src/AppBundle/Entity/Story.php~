@@ -125,4 +125,3 @@ class Story
         return $this->nbrAuteurs;
     }
 }
-

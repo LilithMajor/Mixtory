@@ -2,8 +2,8 @@
 
 
  {% block body %}
-	 <p>{{ nbr_auteurs }}</p>
-	<form method = "post" action = "{{  path('site_register', {'nbrAuteurs' : nbr_auteurs}) }}">
+	 <p>{{ id }}</p>
+	<form method = "post" action = "{{  path('site_register', {'id' : id}) }}">
 		<div id = "pre-texte"><article> {{pretexte}}</article></div>
 		<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
 		<div id = "adresse-mail"><input type = "text" name = "email" placeholder = "Adresse Mail"/></div>

@@ -5,10 +5,12 @@ site_firstline:
     path:     /New
     defaults: { _controller: AppBundle:Default:firstline }
 site_register:
-    path:     /New/{nbrAuteurs}
+    path:     /New/{id}
     defaults: { _controller: AppBundle:Default:newline }
     requirements:
       id: \d+
 site_envoi:
-    path:     /Envoi
+    path:     /Envoi/{id}
     defaults: { _controller: AppBundle:Default:envoi }
+    requirements:
+      id: \d+
