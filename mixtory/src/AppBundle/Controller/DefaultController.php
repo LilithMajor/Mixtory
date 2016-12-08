@@ -31,7 +31,7 @@ class DefaultController extends Controller
                                     array('id'=>'DESC')
                                     );
             $pretexte = $auteur->getTexte();
-            if($nbrAuteurs>1)
+        if($nbrAuteurs>1)
             {
                 return $this->render('new_line.html.twig', array('pretexte' =>$pretexte, 'id' => $id, 'titre' => $story->getTitre()));
             }
@@ -53,7 +53,11 @@ class DefaultController extends Controller
         $em->flush();
         $auteur = new Auteur();
         $auteur->setIdStory($story->getId());
-        $auteur->setEmail($request->request->get('email'));
+         $mail = $request->request->get('email');
+          if(!$mail){
+                $mail = 'mixtorythestory@gmail.com';
+           }
+        $auteur->setEmail($mail);
         $auteur->setTexte($request->request->get('texte'));
         $em->persist($auteur);
         $em->flush();
@@ -74,12 +78,21 @@ class DefaultController extends Controller
             );
         }   
         $nbrAuteurs = $story->getNbrAuteurs();
-        $nbrAuteurs--;
+        $texte = $request->request->get('texte');
+        if($texte)
+        {
+           $nbrAuteurs = $nbrAuteurs - 1; 
+        }
+        else{}
         $story->setNbrAuteurs($nbrAuteurs);
         $em->flush();
         $auteur = new Auteur();
         $auteur->setIdStory($story->getId());
-        $auteur->setEmail($request->request->get('email'));
+        $mail = $request->request->get('email');
+        if(!$mail){
+              $mail = 'mixtorythestory@gmail.com';     
+         }
+        $auteur->setEmail($mail);
         $auteur->setTexte($request->request->get('texte'));
         $em->persist($auteur);
         $em->flush();
@@ -101,14 +114,20 @@ class DefaultController extends Controller
         $em->persist($story);
         $em->flush();
          $auteur = new Auteur();
-         $auteur->setIdStory($id);
-         $auteur->setEmail($request->request->get('email'));
+        $auteur->setIdStory($id);
+        $mail = $request->request->get('email');
+        if(!$mail){
+            $mail = 'mixtorythestory@gmail.com';
+         }
+         $auteur->setEmail($mail);
          $auteur->setTexte($request->request->get('texte'));
          $em->persist($auteur);
          $em->flush();
          $merci = "Merci d'avoir participé à l'histoire nommée : ".$story->getTitre();
          $repository = $this->getDoctrine()->getRepository('AppBundle:Auteur');
          $auteurs = $repository->findByIdStory($id);
+         if($auteurs != null)
+         {
 				$message = \Swift_Message::newInstance();
 
 				// Give the message a subject
@@ -129,6 +148,10 @@ class DefaultController extends Controller
 				//$message->addPart('<q>Here is the message itself</q>', 'text/html');
                 // Optionally add any attachme
                 $this->get('mailer')->send($message);
+         }
+         else
+         {
+         }
                 
             return $this->render('merci.html.twig', array('merci' => $merci));
     }

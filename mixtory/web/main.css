@@ -4,28 +4,18 @@
 
 }
 
-#titre{
-	postion : relative;
-	margin-left : 45%;
-	margin-right : 45%;
-	width : 10%;
-	paddin-left : 0%;
-	border : 2px absolute red;
-	border-radius : 10px/50px;
-}
-
-#pre-texte{
+#menu{
 	position : relative;
-	margin-left : 50%;
-	border : 2px absolute red;
+	float : left;
+	padding-left : 0;
+	padding-right : 20px;
+	margin-right : 1%;
+	height : 100%;
+	display : block;
+	border : 2px solid red;
 }
 
-#texte{
-	margin-left : 45%;¶
-	margin-right : 45%;¶
- 	width : 10%;¶
- 	paddin-left : 0%;¶
- 	border : 2px absolute red;¶
-	border-radius : 10px/50px;
+form{
+	padding-left : 30%;
 }
 
