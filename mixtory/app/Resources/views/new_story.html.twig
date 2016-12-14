@@ -1,14 +1,16 @@
-{% extends 'base.html.twig' %}
-
-
-
- {% block body %}
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class = "form-style-3">
 	<form method = "post" action = "{{ path('site_firstline') }}">
-		<div id = "titre"><input type = "text" name = "titre" placeholder = "Votre titre"/></div>
-		<div id = "texte"><textarea name = "texte" rows = "8" cols = "81" placeholder="Rentrez votre texte"></textarea></div>
-		<div id = "nbr_ligne">Choissisez le nombre de co-auteurs supplémentaires : <input type = "text" name = "nbr_auteurs"/></div>
-		<div id = "adresse-mail"><input type = "text" name = "email" placeholder = "Adresse Mail"/></div>
-		<input type= "submit" value = "Go !" class="btn-danger"/>
+		<fieldset><legend>Histoire</legend>
+			<label for="field1"><span>Titre</span><input type = "text" name = "titre">			  <label for="field2"><span>Texte<span class="required">*</span></span><textarea name = "texte" rows = "8" cols = "81"></textarea>
+			<label for="field3"><span>Choissisez le nombre de co-auteurs supplémentaires :<span class="required">*</span></span><input type = "number" name = "nbr_auteurs"/>
+		</fieldset>
+		<fieldset><legend>Informations personnelles</legend>
+			<label for="field4"><span>Adresse e-mail</span><input type = "text" name = "email">
+				<label><span>&nbsp;</span><input type= "submit" value = "Go !"/>
+		</fieldset>
 	</form>
+</div>
 {% endblock %}
 

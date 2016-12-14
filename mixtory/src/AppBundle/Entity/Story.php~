@@ -42,6 +42,13 @@ class Story
      */
     private $nbrAuteurs;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
 
     /**
      * Get id
@@ -123,5 +130,29 @@ class Story
     public function getNbrAuteurs()
     {
         return $this->nbrAuteurs;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * return Story
+     */
+    public function setImage()
+    {
+        $this->$image = $image;
+
+        return $this;
     }
 }
