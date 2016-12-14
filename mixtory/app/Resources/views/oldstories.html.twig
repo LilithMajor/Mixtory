@@ -1,6 +1,5 @@
-<ul class="nav">
-	<h3>Voici les anciennes histoires !</h3>
-	
+<h3 id="oldstories">Voici les anciennes histoires !</h3>
+<ul class="nav">	
 	{% for story in stories %}
 		<li>
 			<a href="{{ path('site_story', {'id': story.id}) }}">
