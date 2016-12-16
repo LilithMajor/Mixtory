@@ -4,9 +4,9 @@
 	padding-left : 0;
 	padding-right : 0;
 	height: 100%;
-	margin-top:2px;
 	width : 20%;
 	border-right:2px solid #0199d9;
+	margin-top:1px;
 }
 #merci{
 	-webkit-box-sizing: content-box;
@@ -29,6 +29,71 @@
     	-webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
   	box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}
+/*#histoire{
+ 	-webkit-box-sizing: content-box;
+ 	-moz-box-sizing: content-box;
+ 	box-sizing: content-box;
+  	width: 50%;
+  	height: 50%;
+  	margin-top: 100px;
+  	margin-left:auto;
+  	margin-right:auto;
+  	padding: 10px;
+  	overflow: hidden;
+  	border: none;
+  	font: normal 30px/1 "Times New Roman", Times, serif;
+  	color: rgba(255,255,255,1);
+  	text-align: center;
+ 	-o-text-overflow: ellipsis;
+  	text-overflow: ellipsis;
+  	background: #0199d9;
+ 	-webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+  	box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
+  	text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
+}*/
+#histoire{
+  	width: 50%;
+        height:100%;
+        margin-top: 100px;
+        margin-left:auto;
+        margin-right:15%;
+        padding: 0;
+	border: solid black 1px;
+	border-width: 0.1em;
+	border-style: solid;
+	border-color: grey;	
+	border-radius: 0.5em;
+	max-height:700px;
+	overflow:auto;
+	box-shadow: 4px 4px 4px #aaa; 
+}
+#histoire h3 {
+	background: #0199d9;
+	color:white;
+	border:0;
+	margin:0;
+	padding: 3%;
+	padding-left: 10%;
+	border-radius: 0 0em 0.5em 0.5em;
+	font-size:30px;
+}
+#histoire p{
+	padding : 2%;
+	margin:auto;
+}
+#histoire button{
+	border: none;
+	padding:6px 0 6px 0;
+	border-radius:8px;
+	background-color:rgba(1,153,217,0.5);
+	font: normal 15px/1 "Times New Roman", Times, serif;
+	color:white;
+	float:right;
+}
+#histoire a{
+	padding:8px 16px;
+	text-decoration: none;
 }
 ul{
   list-style-type: none;
