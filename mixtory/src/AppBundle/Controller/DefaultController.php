@@ -17,7 +17,9 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Story');
         $repAuthor = $this->getDoctrine()->getRepository('AppBundle:Author');
         $story = $repository->findOneByOnGoing(true);
-
+        //$image = "url('/Images/sgtn_1179_full.jpg')";
+        $image = "url(Images/sgtn_1179_full.jpg)";
+        $css = "body{background-image:".$image."};";
         if(!$story)
         {
             return  $this->render('new_story.html.twig');
@@ -33,7 +35,7 @@ class DefaultController extends Controller
             $pretext = $author->getText();
         if($nbrAuthor>1)
             {
-                return $this->render('new_line.html.twig', array('pretext' =>$pretext, 'id' => $id, 'title' => $story->getTitle()));
+                return $this->render('new_line.html.twig', array('pretext' =>$pretext, 'id' => $id, 'title' => $story->getTitle(), 'css' => $css));
             }
             else
             {
