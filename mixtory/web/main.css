@@ -8,7 +8,7 @@
 	border-right:2px solid #0199d9;
 	margin-top:1px;
 }
-#merci{
+#thanks {
 	-webkit-box-sizing: content-box;
    	-moz-box-sizing: content-box;
   	box-sizing: content-box;
@@ -52,7 +52,7 @@
   	box-shadow: 1px 1px 1px 0 rgba(0,0,0,0.3) ;
   	text-shadow: 1px 1px 1px rgba(0,0,0,0.2) ;
 }*/
-#histoire{
+#story{
   	width: 50%;
         height:100%;
         margin-top: 100px;
@@ -68,7 +68,7 @@
 	overflow:auto;
 	box-shadow: 4px 4px 4px #aaa; 
 }
-#histoire h3 {
+#story h3 {
 	background: #0199d9;
 	color:white;
 	border:0;
@@ -78,11 +78,11 @@
 	border-radius: 0 0em 0.5em 0.5em;
 	font-size:30px;
 }
-#histoire p{
+#story p{
 	padding : 2%;
 	margin:auto;
 }
-#histoire button{
+#story button{
 	border: none;
 	padding:6px 0 6px 0;
 	border-radius:8px;
@@ -91,7 +91,7 @@
 	color:white;
 	float:right;
 }
-#histoire a{
+#story a{
 	padding:8px 16px;
 	text-decoration: none;
 }

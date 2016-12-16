@@ -24,28 +24,28 @@ class Story
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="en_cours", type="boolean")
+     * @ORM\Column(name="on_going", type="boolean")
      */
-    private $enCours;
+    private $onGoing;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="nbr_auteurs", type="integer")
+     * @ORM\Column(name="nbr_author", type="integer")
      */
-    private $nbrAuteurs;
+    private $nbrAuthor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -61,75 +61,75 @@ class Story
     }
 
     /**
-     * Set titre
+     * Set title
      *
-     * @param string $titre
+     * @param string $title
      *
      * @return Story
      */
-    public function setTitre($titre)
+    public function setTitle($title)
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get titre
+     * Get title
      *
      * @return string
      */
-    public function getTitre()
+    public function getTitle()
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
-     * Set enCours
+     * Set onGoing
      *
-     * @param boolean $enCours
+     * @param boolean $onGoing
      *
      * @return Story
      */
-    public function setEnCours($enCours)
+    public function setOnGoing($onGoing)
     {
-        $this->enCours = $enCours;
+        $this->onGoing = $onGoing;
 
         return $this;
     }
 
     /**
-     * Get enCours
+     * Get onGoing
      *
      * @return bool
      */
-    public function getEnCours()
+    public function getOnGoing()
     {
-        return $this->enCours;
+        return $this->onGoing;
     }
 
     /**
-     * Set nbrAuteurs
+     * Set nbrAuthor
      *
-     * @param integer $nbrAuteurs
+     * @param integer $nbrAuthor
      *
      * @return Story
      */
-    public function setNbrAuteurs($nbrAuteurs)
+    public function setNbrAuthor($nbrAuthor)
     {
-        $this->nbrAuteurs = $nbrAuteurs;
+        $this->nbrAuthor = $nbrAuthor;
 
         return $this;
     }
 
     /**
-     * Get nbrAuteurs
+     * Get nbrAuthor
      *
      * @return int
      */
-    public function getNbrAuteurs()
+    public function getNbrAuthor()
     {
-        return $this->nbrAuteurs;
+        return $this->nbrAuthor;
     }
 
     /**

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<article id="histoire">
- <h3>{{story.titre }}</h3>
-         {% for auteur in auteurs %}
-            <p>{{ auteur.texte }}</p>
+<article id="story">
+ <h3>{{story.title }}</h3>
+         {% for author in authors %}
+            <p>{{ author.text }}</p>
          {% endfor %}
 	 <button><a href = "{{ path('site_homepage')}}">Retour sur la page d'accueil</a></button>
 </article>

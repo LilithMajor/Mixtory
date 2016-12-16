@@ -10,8 +10,8 @@ site_register:
     requirements:
       id: \d+
 site_envoi:
-    path:     /Envoi/{id}
-    defaults: { _controller: AppBundle:Default:envoi }
+    path:     /Send/{id}
+    defaults: { _controller: AppBundle:Default:send }
     requirements:
       id: \d+
 site_story:

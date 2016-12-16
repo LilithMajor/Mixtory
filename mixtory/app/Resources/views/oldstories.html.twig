@@ -3,7 +3,7 @@
 	{% for story in stories %}
 		<li>
 			<a href="{{ path('site_story', {'id': story.id}) }}">
-				{{story.titre}}
+				{{story.title}}
 			</a>
 		</li>
 	{% endfor %}

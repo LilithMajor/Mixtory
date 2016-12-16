@@ -2,12 +2,12 @@
 
 
  {% block body %}
-	 <p>{{ titre }}</p>
 	<div class = "form-style-3">
 		<form method="post" action = "{{ path('site_register', {'id' : id}) }}">
-			<div id="pre-texte"><article>{{pretexte}}</article></div>
+			<h3>{{title}}</h3>
+			<div id="pre-text"><article>{{pretext}}</article></div>
        		<fieldset><legend>Histoire</legend>
-                <label for="field2"><span>Texte :<span class="required">*</span></span><textarea name = "texte" rows = "8" cols = "81"></textarea>
+                <label for="field2"><span>Texte :<span class="required">*</span></span><textarea name = "text" rows = "8" cols = "81"></textarea>
                 </fieldset>
                 <fieldset><legend>Informations personnelles</legend>
                 <label for="field4"><span>Adresse e-mail :</span><input type = "text" name="email">

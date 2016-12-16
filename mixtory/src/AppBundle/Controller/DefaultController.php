@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Story;
-use AppBundle\Entity\Auteur;
+use AppBundle\Entity\Author;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,8 +15,8 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Story');
-        $repAuteur = $this->getDoctrine()->getRepository('AppBundle:Auteur');
-        $story = $repository->findOneByEnCours(true);
+        $repAuthor = $this->getDoctrine()->getRepository('AppBundle:Author');
+        $story = $repository->findOneByOnGoing(true);
 
         if(!$story)
         {
@@ -25,19 +25,19 @@ class DefaultController extends Controller
         else
         {
             $id = $story->getId();
-            $nbrAuteurs = $story->getNbrAuteurs();
-            $auteur = $repAuteur->findOneBy(
+            $nbrAuthor = $story->getNbrAuthor();
+            $author = $repAuthor->findOneBy(
                                     array('idStory'=>$id),
                                     array('id'=>'DESC')
                                     );
-            $pretexte = $auteur->getTexte();
-        if($nbrAuteurs>1)
+            $pretext = $author->getText();
+        if($nbrAuthor>1)
             {
-                return $this->render('new_line.html.twig', array('pretexte' =>$pretexte, 'id' => $id, 'titre' => $story->getTitre()));
+                return $this->render('new_line.html.twig', array('pretext' =>$pretext, 'id' => $id, 'title' => $story->getTitle()));
             }
             else
             {
-                return $this->render('last_autor.html.twig', array('pretexte'=>$pretexte, 'id' => $id, 'titre' => $story->getTitre()));
+                return $this->render('last_autor.html.twig', array('pretext'=>$pretext, 'id' => $id, 'title' => $story->getTitle()));
             }
         }
     }
@@ -46,25 +46,24 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $story = new Story();
-        $story->setTitre($request->request->get('titre'));
-        $story->setEnCours(true);
-        $story->setNbrAuteurs($request->request->get('nbr_auteurs'));
+        $story->setTitle($request->request->get('title'));
+        $story->setOnGoing(true);
+        $story->setNbrAuthor($request->request->get('nbr_author'));
         $em->persist($story);
         $em->flush();
-        $auteur = new Auteur();
-        $auteur->setIdStory($story->getId());
+        $author = new Author();
+        $author->setIdStory($story->getId());
          $mail = $request->request->get('email');
           if(!$mail){
                 $mail = 'mixtorythestory@gmail.com';
            }
-        $auteur->setEmail($mail);
-        $auteur->setTexte($request->request->get('texte'));
-        $em->persist($auteur);
+        $author->setEmail($mail);
+        $author->setText($request->request->get('text'));
+        $em->persist($author);
         $em->flush();
 
-        $merci = "Merci d'avoir créé l'histoire nommée : ".$story->getTitre();
-        return $this->render('merci.html.twig', array('merci' => $merci));
-
+        $thx = "Merci d'avoir créé l'histoire nommée : ".$story->getTitle();
+        return $this->render('merci.html.twig', array('thx' => $thx));
     }
 
 	public function newlineAction(Request $request, $id)
@@ -77,31 +76,31 @@ class DefaultController extends Controller
                 'No product found for id '.$id
             );
         }   
-        $nbrAuteurs = $story->getNbrAuteurs();
-        $texte = $request->request->get('texte');
-        if($texte)
+        $nbrAuthor = $story->getNbrAuthor();
+        $text = $request->request->get('text');
+        if($text)
         {
-           $nbrAuteurs = $nbrAuteurs - 1; 
+           $nbrAuthor = $nbrAuthor - 1; 
         }
         else{}
-        $story->setNbrAuteurs($nbrAuteurs);
+        $story->setNbrAuthor($nbrAuthor);
         $em->flush();
-        $auteur = new Auteur();
-        $auteur->setIdStory($story->getId());
+        $author = new Author();
+        $author->setIdStory($story->getId());
         $mail = $request->request->get('email');
         if(!$mail){
               $mail = 'mixtorythestory@gmail.com';     
          }
-        $auteur->setEmail($mail);
-        $auteur->setTexte($request->request->get('texte'));
-        $em->persist($auteur);
+        $author->setEmail($mail);
+        $author->setText($request->request->get('text'));
+        $em->persist($author);
         $em->flush();
-        $merci = "Merci d'avoir participé à l'histoire nommée : ".$story->getTitre();
+        $thx = "Merci d'avoir participé à l'histoire nommée : ".$story->getTitle();
 
-        return $this->render('merci.html.twig', array('merci'=> $merci)); 
+        return $this->render('merci.html.twig', array('thx'=> $thx)); 
     }
 
-    public function envoiAction(Request $request, $id)
+    public function sendAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $story = $em->getRepository('AppBundle:Story')->find($id);
@@ -110,23 +109,23 @@ class DefaultController extends Controller
                   'No product found for id '.$id
               );
         }
-        $story->setEnCours(false);
+        $story->setOnGoing(false);
         $em->persist($story);
         $em->flush();
-         $auteur = new Auteur();
-        $auteur->setIdStory($id);
+         $author = new Author();
+        $author->setIdStory($id);
         $mail = $request->request->get('email');
         if(!$mail){
             $mail = 'mixtorythestory@gmail.com';
          }
-         $auteur->setEmail($mail);
-         $auteur->setTexte($request->request->get('texte'));
-         $em->persist($auteur);
+         $author->setEmail($mail);
+         $author->setText($request->request->get('text'));
+         $em->persist($author);
          $em->flush();
-         $merci = "Merci d'avoir participé à l'histoire nommée : ".$story->getTitre();
-         $repository = $this->getDoctrine()->getRepository('AppBundle:Auteur');
-         $auteurs = $repository->findByIdStory($id);
-         if($auteurs != null)
+         $thx = "Merci d'avoir participé à l'histoire nommée : ".$story->getTitle();
+         $repository = $this->getDoctrine()->getRepository('AppBundle:Author');
+         $authors = $repository->findByIdStory($id);
+         if($authors != null)
          {
 				$message = \Swift_Message::newInstance();
 
@@ -137,12 +136,12 @@ class DefaultController extends Controller
 				$message->setFrom(array('mixtorythestory@gmail.com' => 'Mixtory'));
 
 				// Set the To addresses with an associative array
-                foreach($auteurs as $auteur)
+                foreach($authors as $author)
                 {
-				    $message->addTo($auteur->getEmail());
+				    $message->addTo($author->getEmail());
                 }
 				// Give it a body
-				$message->setBody($this->render('mail.html.twig', array('story' => $story, 'auteurs' => $auteurs)), 'text/html');
+				$message->setBody($this->render('mail.html.twig', array('story' => $story, 'authors' => $authors)), 'text/html');
 
 				// And optionally an alternative body
 				//$message->addPart('<q>Here is the message itself</q>', 'text/html');
@@ -153,23 +152,23 @@ class DefaultController extends Controller
          {
          }
                 
-            return $this->render('merci.html.twig', array('merci' => $merci));
+            return $this->render('merci.html.twig', array('thx' => $thx));
     }
 
     public function oldstoriesAction()
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Story');
-        $stories = $repository->findByEnCours(false);
+        $stories = $repository->findByOnGoing(false);
         return $this->render('oldstories.html.twig', array('stories' => $stories));
     }
 
     public function showAction($id)
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Auteur');
-        $auteurs = $repository->findByIdStory($id);
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Author');
+        $authors = $repository->findByIdStory($id);
         $repositorystory = $this->getDoctrine()->getRepository('AppBundle:Story');
         $story = $repositorystory->find($id);
-        return $this->render('story.html.twig', array('story' => $story, 'auteurs' => $auteurs));
+        return $this->render('story.html.twig', array('story' => $story, 'authors' => $authors));
     }
 }
 
