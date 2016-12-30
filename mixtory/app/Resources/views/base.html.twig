@@ -12,7 +12,7 @@
 <body>
 	<header id="head"><h3>Bienvenue sur Mixtory !!</h3></header>
 	<div id="menu">
-		{{ render(controller("AppBundle:Default:oldstories")) }}
+		{{ render(controller("AppBundle:Default:oldstories", {'limit':3})) }}
 	</div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
