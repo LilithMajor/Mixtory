@@ -17,42 +17,29 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Story');
         $repAuthor = $this->getDoctrine()->getRepository('AppBundle:Author');
         $story = $repository->findOneByOnGoing(true);
-        //$image = "url(large_potato.png)";
+        //$image = "url('/Images/sgtn_1179_full.jpg')";
+        $image = "url(Images/sgtn_1179_full.jpg)";
+        $css = "body{background-image:".$image."};";
         if(!$story)
         {
             return  $this->render('new_story.html.twig');
         }
         else
-        {   
-            $image = "url(Images/large_potato.png)";
+        {
             $id = $story->getId();
-            $theme = $story->getImage();
-                if($theme=="Horror")
-                    {
-                        $image="url(Images/sgtn_1179_full.jpg)";
-                    }
-                if($theme=="Comedy")
-                    {
-                        $image="url(Images/rouge-de-cirque-et-jaune-horizontaux-41957157.jpg)";
-                    }
-                if($theme=="Romantic")
-                    {
-                        $image="url(Images/love_wallpaper_cool-hd.jpg)";
-                    }
-                $css = "body{background-image:".$image."};";
             $nbrAuthor = $story->getNbrAuthor();
             $author = $repAuthor->findOneBy(
                                     array('idStory'=>$id),
                                     array('id'=>'DESC')
                                     );
             $pretext = $author->getText();
-            if($nbrAuthor>1)
+        if($nbrAuthor>1)
             {
                 return $this->render('new_line.html.twig', array('pretext' =>$pretext, 'id' => $id, 'title' => $story->getTitle(), 'css' => $css));
             }
             else
             {
-                return $this->render('last_autor.html.twig', array('pretext'=>$pretext, 'id' => $id, 'title' => $story->getTitle(), 'css' => $css));
+                return $this->render('last_autor.html.twig', array('pretext'=>$pretext, 'id' => $id, 'title' => $story->getTitle()));
             }
         }
     }
@@ -64,13 +51,11 @@ class DefaultController extends Controller
         $story->setTitle($request->request->get('title'));
         $story->setOnGoing(true);
         $story->setNbrAuthor($request->request->get('nbr_author'));
-        /* Alex */
-        $story->setImage($request->request->get('theme'));
         $em->persist($story);
         $em->flush();
         $author = new Author();
         $author->setIdStory($story->getId());
-        $mail = $request->request->get('email');
+         $mail = $request->request->get('email');
           if(!$mail){
                 $mail = 'mixtorythestory@gmail.com';
            }

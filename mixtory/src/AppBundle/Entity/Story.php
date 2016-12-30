@@ -149,9 +149,9 @@ class Story
      *
      * return Story
      */
-    public function setImage($image)
+    public function setImage()
     {
-        $this->image = $image;
+        $this->$image = $image;
 
         return $this;
     }
