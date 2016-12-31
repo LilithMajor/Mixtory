@@ -9,6 +9,26 @@
 	border-right:2px solid #0199d9;
 	margin-top:1px;
 }
+#buttonSee{
+	float:right;
+	margin-top: 5px;
+	margin-right: 2px;
+	border:none;
+	padding:6px 2px 6px 2px;
+	border-radius:8px;
+	background-color:rgba(1,153,217,0.5);
+	color:white;
+}
+ #buttonSee:hover{
+        float:right;
+        margin-top: 5px;
+        margin-right: 2px;
+        border:none;
+        padding:6px 2px 6px 2px;
+        border-radius:8px;
+        background-color:rgba(1,153,255,0.5);
+        color:black;
+ }
 #thanks {
 	-webkit-box-sizing: content-box;
    	-moz-box-sizing: content-box;
@@ -91,6 +111,15 @@
 	font: normal 15px/1 "Times New Roman", Times, serif;
 	color:white;
 	float:right;
+}
+#story button:hover{
+       border: none;
+       padding:6px 0 6px 0;
+       border-radius:8px;
+       background-color:rgba(1,153,255,0.5);
+       font: normal 15px/1 "Times New Roman", Times, serif;
+       color:black;
+       float:right;
 }
 #story a{
 	padding:8px 16px;
@@ -175,7 +204,7 @@ background-color: rgba(1,153,217,0.5);
 
 #pre-text{
 	color:white;
-	background: rgba(1, 153, 217, 0.3);
+	background: rgba(1, 153, 217, 0.5);
 	margin-bottom: 10px;
 	padding-left: 5px;
 }
@@ -243,7 +272,7 @@ background-color: rgba(1,153,217,0.5);
      box-shadow: inset 1px 1px 4px #FFD5E7;
      -moz-box-shadow: inset 1px 1px 4px #FFD5E7;
      -webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
-     background: rgba(1, 153, 217, 0.5);
+     background: rgba(1, 153, 217, 0.8);
      width:75%;
      margin-left:auto;
      margin-right:auto;

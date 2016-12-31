@@ -19,3 +19,6 @@ site_story:
     defaults: { _controller: AppBundle:Default:show }
     requirements:
       id: \d+
+site_storyView:
+    path:     /All
+    defaults: { _controller: AppBundle:Default:storyView }

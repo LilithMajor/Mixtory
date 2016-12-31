@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+       <style>
+              {{css}}
+      </style>
+      {{ parent() }}
+{% endblock %}
 {% block body %}
 <article id="story">
- <h3>{{story.title }}</h3>
+	<h3>{{story.title }} - Thème : {{story.image }}</h3>
          {% for author in authors %}
-            <p>{{ author.text }}</p>
+		 <p>{{ author.text }}</p>
          {% endfor %}
-	 <button><a href = "{{ path('site_homepage')}}">Retour sur la page d'accueil</a></button>
+	 <a href="{{ path('site_homepage')}}"><button>Retour sur la page d'accueil</button></a>
 </article>
 {% endblock %}

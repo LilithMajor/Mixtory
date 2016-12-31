@@ -24,7 +24,7 @@ class DefaultController extends Controller
         }
         else
         {   
-            $image = "url(Images/large_potato.png)";
+            $image = "" ;
             $id = $story->getId();
             $theme = $story->getImage();
                 if($theme=="Horror")
@@ -33,11 +33,11 @@ class DefaultController extends Controller
                     }
                 if($theme=="Comedy")
                     {
-                        $image="url(Images/rouge-de-cirque-et-jaune-horizontaux-41957157.jpg)";
+                        $image="url(Images/Comedy1.jpg)";
                     }
                 if($theme=="Romantic")
                     {
-                        $image="url(Images/love_wallpaper_cool-hd.jpg)";
+                        $image="url(Images/Romance.jpg)";
                     }
                 $css = "body{background-image:".$image."};";
             $nbrAuthor = $story->getNbrAuthor();
@@ -48,11 +48,11 @@ class DefaultController extends Controller
             $pretext = $author->getText();
             if($nbrAuthor>1)
             {
-                return $this->render('new_line.html.twig', array('pretext' =>$pretext, 'id' => $id, 'title' => $story->getTitle(), 'css' => $css));
+                return $this->render('new_line.html.twig', array('pretext' =>$pretext, 'id' => $id, 'title' => $story->getTitle(), 'css' => $css, 'theme' => $theme));
             }
             else
             {
-                return $this->render('last_autor.html.twig', array('pretext'=>$pretext, 'id' => $id, 'title' => $story->getTitle(), 'css' => $css));
+                return $this->render('last_autor.html.twig', array('pretext'=>$pretext, 'id' => $id, 'title' => $story->getTitle(), 'css' => $css, 'theme' => $theme));
             }
         }
     }
@@ -175,7 +175,7 @@ class DefaultController extends Controller
     public function oldstoriesAction()
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Story');
-        $stories = $repository->findByOnGoing(false);
+        $stories = $repository->findBy(array('onGoing' => false),array('id' => 'desc'), 10, 0);
         return $this->render('oldstories.html.twig', array('stories' => $stories));
     }
 
@@ -185,7 +185,30 @@ class DefaultController extends Controller
         $authors = $repository->findByIdStory($id);
         $repositorystory = $this->getDoctrine()->getRepository('AppBundle:Story');
         $story = $repositorystory->find($id);
-        return $this->render('story.html.twig', array('story' => $story, 'authors' => $authors));
+        $theme = "Horror";
+        $image="";
+                 if($theme=="Horror")
+                     {
+                         $image="url(Images/sgtn_1179_full.jpg)";
+                     }
+                 if($theme=="Comedy")
+                     {
+                         $image="url(Images/Comedy1.jpg)";
+                     }
+                 if($theme=="Romantic")
+                     {
+                            $image="url(Images/Romance.jpg)";
+                     }
+                 $css = "body{background-image:".$image."};";
+
+        return $this->render('story.html.twig', array('story' => $story, 'authors' => $authors, 'css' => $css));
+    }
+
+    public function storyViewAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Story');
+        $stories = $repository->findByOnGoing(false);
+        return $this->render('allstories.html.twig', array('stories' => $stories));
     }
 }
 
